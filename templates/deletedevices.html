@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block head %}
+<script>
+function ValidateIPaddress(ip)
+{
+ if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip))
+  {
+    alert("Valid IP")
+  }
+  else
+  {
+   alert("You have entered an invalid IP address!")
+  }
+}
+</script>
+{% endblock %}
+{% block title %}
+Delete Device
+{% endblock %}
+
+{% block body %}
+<form name = "deleteForm" method="post">
+    <label for = "ipaddress">IP Address</label>
+    <input name ="ipaddress" id = "ipaddress" type = "text">
+    <button type="submit" class="btn btn-primary"
+            onClick = "ValidateIPaddress(document.getElementById('ipaddress').value)">
+        Submit</button>
+</form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}
+User Login
+{% endblock %}
+{% block body %}
+      <br>
+      <form action="" method="post">
+        <input type="text" placeholder="Username" name="username" value="{{
+        request.form.username }}">
+        <input type="password" placeholder="Password" name="password" value="{{
+        request.form.password }}">
+        <input class="btn btn-primary" type="submit" value="Login">
+        <a href="{{url_for('signup')}}">New User</a>
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+{% endblock %}

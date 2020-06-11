@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block title %}
+User Registration
+{% endblock %}
+{% block body %}
+      <br>
+      <form action="" method="post">
+          <div class = "row">
+              <div class = "col">
+                  <label for="username">Username</label>
+              </div>
+              <div class = "col">
+                  <input type="text" placeholder="Username" name="username" id="username" value="{{
+        request.form.username }}">
+              </div>
+          </div>
+          <div class = "row">
+              <div class = "col">
+                  <label for="email">Email Address</label>
+              </div>
+              <div class = "col">
+                  <input type = "email" placeholder = "Enter Email id" name ="email" id="email" value = "{{
+         request.form.email}}">
+              </div>
+          </div>
+          <div class = "row">
+              <div class = "col">
+                  <label for="password">Password</label>
+              </div>
+              <div class = "col">
+                  <input type="password" placeholder="Password" name="password" id="password" value="{{
+        request.form.password }}">
+              </div>
+          </div>
+          <div class = "row">
+              <div class = "col">
+                  <label for="confirm_password">Confirm Password</label>
+              </div>
+              <div class = "col">
+                  <input type="password" placeholder="Confirm Password" name="Confirm password" id="confirm_password"
+                         value="{{request.form.confirm_password }}">
+              </div>
+          </div>
+        <input class="btn btn-primary" type="submit" value="Register">
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+{% endblock %}

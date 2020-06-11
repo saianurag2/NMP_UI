@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block head %}
+<script src ="/static/display_devices.js"></script>
+{% endblock %}
+{% block title %}
+Add Devices
+{% endblock %}
+
+{% block body %}
+<form action ="{{url_for('create_device')}}" name = "addForm" method = 'post' >
+    <div class = "row">
+        <div class="col">
+        <label for = "building" >Building</label>
+        </div>
+        <div class="col">
+        <input id = "building" name = "building" list = "buildings" placeholder = "Choose Building" >
+        <datalist id = "buildings">
+            <option value = "LHTC">
+            <option value = "CC">
+            <option value = "Halls">
+        </datalist>
+        </div>
+    </div>
+    <div class = "row">
+        <div class="col">
+        <label for = "ipaddress" >IP Address</label>
+        </div>
+        <div class="col">
+            <input id = "ipaddress" name = "ipaddress" type = text placeholder = "Enter IP Address">
+        </div>
+        </div>
+    <div class = "row">
+        <div class="col">
+        <label for = "snmpstr" >SNMP String</label>
+        </div>
+        <div class="col">
+        <input id = "snmpstr" name = "snmpstr" type = text placeholder = "Enter SNMPv2 Comm Str">
+        </div>
+    </div>
+    <div class = "row">
+        <div class="col">
+        <label for = "descr" >Description</label>
+        </div>
+        <div class="col">
+        <input id="descr" name = "descr" type = text placeholder = "Enter Description">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+</form>
+{% endblock %}
