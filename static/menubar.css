@@ -9,9 +9,9 @@
   float: left;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
+  padding: 10px 14px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 18px;
 }
 
 /* Change the color of links on hover */
@@ -21,7 +21,7 @@
 }
 
 /* Add a color to the active/current link */
-.topnav a.active {
+.topnav a:active {
   background-color: #4CAF50;
   color: white;
 }

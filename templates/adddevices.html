@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block head %}
-<script src ="/static/display_devices.js"></script>
+<script src="{{ url_for('static', filename='demo.js') }}"></script>
 {% endblock %}
 {% block title %}
 Add Devices
@@ -13,11 +13,11 @@ Add Devices
         <label for = "building" >Building</label>
         </div>
         <div class="col">
-        <input id = "building" name = "building" list = "buildings" placeholder = "Choose Building" >
+        <input id = "building" name = "building" list = "buildings" required autofocus placeholder = "Choose Building" >
         <datalist id = "buildings">
             <option value = "LHTC">
             <option value = "CC">
-            <option value = "Halls">
+            <option value = "Hall">
         </datalist>
         </div>
     </div>
@@ -26,7 +26,7 @@ Add Devices
         <label for = "ipaddress" >IP Address</label>
         </div>
         <div class="col">
-            <input id = "ipaddress" name = "ipaddress" type = text placeholder = "Enter IP Address">
+            <input id = "ipaddress" name = "ipaddress" type = text required placeholder = "Enter IP Address">
         </div>
         </div>
     <div class = "row">
@@ -34,7 +34,7 @@ Add Devices
         <label for = "snmpstr" >SNMP String</label>
         </div>
         <div class="col">
-        <input id = "snmpstr" name = "snmpstr" type = text placeholder = "Enter SNMPv2 Comm Str">
+        <input id = "snmpstr" name = "snmpstr" type = text required placeholder = "Enter SNMPv2 Comm Str">
         </div>
     </div>
     <div class = "row">
@@ -42,9 +42,10 @@ Add Devices
         <label for = "descr" >Description</label>
         </div>
         <div class="col">
-        <input id="descr" name = "descr" type = text placeholder = "Enter Description">
+        <input id="descr" name = "descr" type = text required placeholder = "Enter Description">
         </div>
     </div>
-    <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+    <button type="submit" class="btn btn-primary" id="submit-btn"
+            onClick = "ValidateIPaddress(document.getElementById('ipaddress').value)">Submit</button>
 </form>
 {% endblock %}

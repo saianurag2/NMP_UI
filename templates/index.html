@@ -1,24 +1,22 @@
 {% extends "layout.html" %}
-{% block head %}
-<link rel="stylesheet" href="/static/menubar.css">
-<script>
-
-</script>
-{% endblock %}
 {% block title %}
-Home Page
+Home
 {% endblock %}
 
 {% block body %}
-<div class="topnav">
-<a href="{{url_for('view_devices')}}">View Device</a>
-<a href = "{{url_for('add_devices')}}" >Add Device</a>
-<a href="{{url_for('update_devices')}}">Update Device</a>
-<a href="{{url_for('delete_devices')}}">Delete Device</a>
-</div>
 <div class="main">
-<table>
-
+<table id="bldg-table" class="table">
+    <tbody>
+        {% for bldg in buildings %}
+        <tr>
+            <th scope="row">{{loop.index}}</th>
+            <th scope="row">{{bldg}}</th>
+            <td>
+                <a class="btn btn-primary" href="{{url_for('index_view',building=bldg)}}" role="button">View Devices</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 </div>
 {% endblock %}

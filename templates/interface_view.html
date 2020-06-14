@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Interface Details of {{ device[0]["ip"] }}
+{% endblock %}
+
+{% block body %}
+    <table id="device_tbl" class="table table-bordered">
+        <tbody>
+            <tr>
+                <th scope="row">Building</th>
+                <td>{{device[0]["building"]}}</td>
+            </tr>
+            <tr>
+                <th scope="row">IP Address</th>
+                <td>{{ device[0]["ip"] }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Description</th>
+                <td>{{ device[0]["description"] }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Status</th>
+                {% if device[0]["is_alive"] %}
+                    <td>Alive</td>
+                {% else %}
+                    <td>Dead</td>
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+
+    <table id="interface_tbl" class="table table-bordered">
+            <thead>
+            <tr>
+            <th scope="col">Index</th>
+            <th scope="col">Description</th>
+            <th scope="col">Physical Address</th>
+            <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for i in range(0,(device[0]["interfaces"]| length)) %}
+            <tr>
+                <td>{{ device[0]["interfaces"][i]["if_index"] }}</td>
+                <td>{{ device[0]["interfaces"][i]["if_description"] }}</td>
+                <td>{{ device[0]["interfaces"][i]["if_physical_add"] }}</td>
+                <td>{{ device[0]["interfaces"][i]["if_status"] }}</td>
+            </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+

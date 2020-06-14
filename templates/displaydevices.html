@@ -18,11 +18,18 @@ View Devices
     <tbody>
         {% for device in devices %}
         <tr>
-        <td>{{loop.index}}</td>
-        <td>{{device.get("building")}}</td>
-        <td>{{device.get("ip")}}</td>
-        <td>{{device.get("description")}}</td>
-        <td>{{device.get("is_alive")}}</td>
+            <td>{{loop.index}}</td>
+            <td>{{device.get("building")}}</td>
+            <td>
+                <a href="{{ url_for('fetch_interface',building =device.get('building'),ip=device.get('ip')) }}">
+                    {{device.get("ip")}}</a>
+            </td>
+            <td>{{device.get("description")}}</td>
+            {% if device.get("is_alive") %}
+            <td>Alive</td>
+            {% else %}
+            <td>Dead</td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>

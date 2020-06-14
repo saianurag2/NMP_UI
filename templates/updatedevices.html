@@ -1,66 +1,68 @@
 {% extends "layout.html" %}
 {% block head %}
-<script src="{{ url_for('static', filename='updateForm.js') }}"></script>
+<script src="{{ url_for('static', filename='demo.js') }}"></script>
 {% endblock %}
 {% block title %}
 Update Device
 {% endblock %}
 
 {% block body %}
-<form  id = "modifyForm" method = 'post' >
-<!--    <p>Mark the fields you wish to change</p>-->
+<form action ="{{url_for('process_update')}}" id = "modifyForm" method = 'post' >
     <div class = "row">
         <div class="col">
-        <label for = "curr_building" >Current Building</label>
+        <label for = "current_building" >Current Building</label>
         </div>
         <div class="col">
-        <input id = "curr_building" name = "curr_building" type ="text" placeholder = "Current Building">
+        <input id = "current_building" name = "current_building" list = "buildings" required autofocus
+               placeholder = "Current Building">
+            <datalist id = "buildings">
+                <option value = "LHTC">
+                <option value = "CC">
+                <option value = "Hall">
+            </datalist>
         </div>
     </div>
     <div class = "row">
         <div class="col">
-        <label for = "curr_ipaddress" >Current IP Address</label>
+        <label for = "current_ip" >Current IP Address</label>
         </div>
         <div class="col">
-            <input id = "curr_ipaddress" name = "curr_ipaddress" type = text placeholder = "Current IP Address" >
+            <input id = "current_ip" name = "current_ip" type = text" required placeholder = "Current IP Address">
         </div>
         </div>
     <div class = "row">
         <div class="col">
-<!--            <input type="checkbox" id="cbox_bldg" name ="cbox_bldg">-->
-        <label for = "new_building" >New Building</label>
+        <label for = "building" >New Building</label>
         </div>
         <div class="col">
-        <input id = "new_building" name = "new_building" type ="text" placeholder = "New Building">
+        <input id = "building" name = "building" list = "buildings" placeholder = "New Building">
         </div>
     </div>
     <div class = "row">
         <div class="col">
-<!--            <input type="checkbox" id="cbox_ip" name ="cbox_ip">-->
-        <label for = "new_ipaddress" >new IP Address</label>
+        <label for = "ip" >new IP Address</label>
         </div>
         <div class="col">
-            <input id = "new_ipaddress" name = "new_ipaddress" type = text placeholder = "New IP Address">
+            <input id = "ip" name = "ip" type = "text" placeholder = "New IP Address">
         </div>
         </div>
     <div class = "row">
         <div class="col">
-<!--            <input type="checkbox" name="cbox_snmp" id="cbox_snmp">-->
-        <label for = "snmpstr" >SNMP String</label>
+        <label for = "community_string" >SNMP String</label>
         </div>
         <div class="col">
-        <input id = "snmpstr" name = "snmpstr" type = text placeholder = "Enter SNMPv2 Comm Str">
+        <input id = "community_string" name = "community_string" type = "text" placeholder = "Enter SNMPv2 Comm Str">
         </div>
     </div>
     <div class = "row">
         <div class="col">
-<!--            <input type="checkbox" name="cbox_descr" id="cbox_descr">-->
-        <label for = "descr" >Description</label>
+        <label for = "description" >Description</label>
         </div>
         <div class="col">
-        <input id="descr" name = "descr" type = text placeholder = "Enter Description">
+        <input id="description" name = "description" type = "text" placeholder = "Enter Description">
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" onClick = "ValidateIPaddress(document.getElementById('ip').value)">
+        Submit</button>
 </form>
 {% endblock %}

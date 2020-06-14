@@ -10,8 +10,8 @@ User Registration
                   <label for="username">Username</label>
               </div>
               <div class = "col">
-                  <input type="text" placeholder="Username" name="username" id="username" value="{{
-        request.form.username }}">
+                  <input type="text" placeholder="Username" name="username" id="username"
+                   required autofocus value="{{request.form.username }}">
               </div>
           </div>
           <div class = "row">
@@ -19,8 +19,8 @@ User Registration
                   <label for="email">Email Address</label>
               </div>
               <div class = "col">
-                  <input type = "email" placeholder = "Enter Email id" name ="email" id="email" value = "{{
-         request.form.email}}">
+                  <input type = "email" placeholder = "Enter Email id" name ="email" id="email"
+                         required value = "{{request.form.email}}">
               </div>
           </div>
           <div class = "row">
@@ -28,8 +28,8 @@ User Registration
                   <label for="password">Password</label>
               </div>
               <div class = "col">
-                  <input type="password" placeholder="Password" name="password" id="password" value="{{
-        request.form.password }}">
+                  <input type="password" placeholder="Password" name="password" id="password"
+                        required value="{{request.form.password }}">
               </div>
           </div>
           <div class = "row">
@@ -38,7 +38,7 @@ User Registration
               </div>
               <div class = "col">
                   <input type="password" placeholder="Confirm Password" name="Confirm password" id="confirm_password"
-                         value="{{request.form.confirm_password }}">
+                        required value="{{request.form.confirm_password }}">
               </div>
           </div>
         <input class="btn btn-primary" type="submit" value="Register">

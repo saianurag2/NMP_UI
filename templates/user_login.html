@@ -5,12 +5,12 @@ User Login
 {% block body %}
       <br>
       <form action="" method="post">
-        <input type="text" placeholder="Username" name="username" value="{{
+        <input type="text" placeholder="Username" name="username" required autofocus value="{{
         request.form.username }}">
-        <input type="password" placeholder="Password" name="password" value="{{
+        <input type="password" placeholder="Password" name="password" required value="{{
         request.form.password }}">
         <input class="btn btn-primary" type="submit" value="Login">
-        <a href="{{url_for('signup')}}">New User</a>
+        <a class="btn btn-primary" href="{{url_for('signup')}}" role="button">New User</a>
       </form>
       {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}

@@ -1,6 +1,4 @@
 {% extends "layout.html" %}
-{% block head %}
-{% endblock %}
 {% block title %}
 View Devices
 {% endblock %}
@@ -12,11 +10,11 @@ View Devices
         <label for = "building" >Building</label>
         </div>
         <div class="col">
-        <input id = "building" name = "building" list = "buildings" placeholder = "Choose Building" >
+        <input id = "building" name = "building" list = "buildings" required autofocus placeholder = "Choose Building" >
         <datalist id = "buildings">
             <option value = "LHTC">
             <option value = "CC">
-            <option value = "Halls">
+            <option value = "Hall">
         </datalist>
         </div>
     </div>
@@ -25,9 +23,10 @@ View Devices
         <label for = "ipaddress" >IP Address</label>
         </div>
         <div class="col">
-            <input id = "ipaddress" name = "ipaddress" type = text placeholder = "Enter IP Address">
+            <input id = "ipaddress" name = "ipaddress" type = text  placeholder = "Enter IP Address">
         </div>
         </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">
+      Submit</button>
 </form>
 {% endblock %}
