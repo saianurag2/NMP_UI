@@ -8,11 +8,13 @@ View Devices
 <table class="table table-bordered">
     <thead>
         <tr>
-        <th scope="col">#</th>
-        <th scope="col">Building</th>
-        <th scope="col">IP Address</th>
-        <th scope="col">Description</th>
-        <th scope="col">Status</th>
+            <th scope="col">#</th>
+            <th scope="col">Building</th>
+            <th scope="col">IP Address</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope ="col">Interfaces</th>
+            <th scope ="col">VLAN</th>
         </tr>
     </thead>
     <tbody>
@@ -20,15 +22,22 @@ View Devices
         <tr>
             <td>{{loop.index}}</td>
             <td>{{device.get("building")}}</td>
-            <td>
-                <a href="{{ url_for('fetch_interface',building =device.get('building'),ip=device.get('ip')) }}">
-                    {{device.get("ip")}}</a>
-            </td>
+            <td>{{device.get("ip")}}</td>
             <td>{{device.get("description")}}</td>
             {% if device.get("is_alive") %}
             <td>Alive</td>
+            <td>
+                <a class="btn btn-primary" href="{{url_for('fetch_interface',building =device.get('building'),
+                ip=device.get('ip'))}}" role="button">View Interfaces</a>
+            </td>
+            <td>
+                <a class="btn btn-primary" href="{{url_for('fetch_interface',building =device.get('building'),
+                ip=device.get('ip'))}}" role="button">View VLANs</a>
+            </td>
             {% else %}
             <td>Dead</td>
+            <td></td>
+            <td></td>
             {% endif %}
         </tr>
         {% endfor %}

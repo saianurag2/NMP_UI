@@ -15,6 +15,8 @@ Session(app)
 
 engine = create_engine("sqlite:///user_details.db")
 BASE_URL = 'http://localhost:9001/device/'
+INTERFACE_URL = 'http://localhost:9001/device/interface/'
+VLAN_URL = 'http://localhost:9001/device/vlan/'
 headers = {'content-type': 'application/json'}
 # TODO use base url to get buildings list
 BUILDINGS = ['LHTC', 'CC', 'Hall']
@@ -260,11 +262,11 @@ def fetch_interface():
         fetch_query.update({"building": building})
     if len(ip) > 0:
         fetch_query.update({"ip": ip})
-    response = requests.get(BASE_URL, params=fetch_query, headers=headers)
+    response = requests.get(INTERFACE_URL, params=fetch_query, headers=headers)
     if response.status_code == requests.codes.ok:
         print("Interface View Request : Success")
     else:
         print("Interface View Request: Fail")
         response.raise_for_status()
     obj = json.loads(response.text)
-    return render_template('interface_view.html', device=obj)
+    return render_template('interface_view.html', device=fetch_query, interfaces=obj)
