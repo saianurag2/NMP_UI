@@ -26,7 +26,17 @@ def index():
     List of Buildings
     """
     if session.get("username"):
-        return render_template("index.html", buildings=BUILDINGS)
+        bldgs = list()
+        try:
+            response = requests.get(BASE_URL, headers=headers)
+            if response.status_code == requests.codes.ok:
+                obj = json.loads(response.text)
+                for bldg in obj:
+                    bldgs.append(bldg["building"])
+        except Exception:
+            print(response.text)
+        finally:
+            return render_template("index.html", buildings=bldgs)
     else:
         return redirect(url_for("login"))
 

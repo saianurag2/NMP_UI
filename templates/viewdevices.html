@@ -1,4 +1,8 @@
 {% extends "layout.html" %}
+{% block head %}
+<meta http-equiv="refresh" content="60";>
+<script src="{{ url_for('static', filename='demo.js') }}"></script>
+{% endblock %}
 {% block title %}
 View Devices
 {% endblock %}
@@ -11,11 +15,6 @@ View Devices
         </div>
         <div class="col">
         <input id = "building" name = "building" list = "buildings" required autofocus placeholder = "Choose Building" >
-        <datalist id = "buildings">
-            <option value = "LHTC">
-            <option value = "CC">
-            <option value = "Hall">
-        </datalist>
         </div>
     </div>
     <div class = "row">
