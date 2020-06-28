@@ -18,8 +18,6 @@ BASE_URL = 'http://localhost:9001/device/'
 INTERFACE_URL = 'http://localhost:9001/device/interface/'
 VLAN_URL = 'http://localhost:9001/device/vlan/'
 headers = {'content-type': 'application/json'}
-# TODO use base url to get buildings list
-BUILDINGS = ['LHTC', 'CC', 'Hall']
 
 
 @app.route('/')
@@ -138,7 +136,7 @@ def view_devices():
         return redirect(url_for("index"))
 
 
-@app.route('/display', methods=['POST'])
+@app.route('/display', methods=['GET', 'POST'])
 def display_devices():
     """
     Makes a GET request
@@ -267,6 +265,29 @@ def fetch_interface():
         print("Interface View Request : Success")
     else:
         print("Interface View Request: Fail")
-        response.raise_for_status()
+        # response.raise_for_status()
     obj = json.loads(response.text)
     return render_template('interface_view.html', device=fetch_query, interfaces=obj)
+
+
+@app.route('/vlan')
+def fetch_vlan():
+    """
+    Displays VLAN details of a particular device
+    """
+    building = request.args.get('building')
+    ip = request.args.get('ip')
+    fetch_query = dict()
+    if not building == "":
+        fetch_query.update({"building": building})
+    if len(ip) > 0:
+        fetch_query.update({"ip": ip})
+    response = requests.get(VLAN_URL, params=fetch_query, headers=headers)
+    if response.status_code == requests.codes.ok:
+        print("VLAN View Request : Success")
+    else:
+        print("VLAN View Request: Fail")
+        # response.raise_for_status()
+    obj = json.loads(response.text)
+    return render_template('vlan_view.html', device=fetch_query, vlan=obj)
+

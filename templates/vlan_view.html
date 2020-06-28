@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-Interface Details of {{ device["ip"] }}
+VLAN Details of {{ device["ip"] }}
 {% endblock %}
 
 {% block body %}
@@ -18,24 +18,22 @@ Interface Details of {{ device["ip"] }}
         </tbody>
     </table>
 
-    <table id="interface_tbl" class="table table-bordered">
+    <table id="vlan" class="table table-bordered">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Index</th>
+                <th scope="col">ID</th>
                 <th scope="col">Description</th>
-                <th scope="col">Physical Address</th>
-                <th scope="col">Status</th>
+                <th scope="col">Ports</th>
             </tr>
         </thead>
         <tbody>
-                {% for i in range(0,(interfaces["interfaces"]| length)) %}
+                {% for i in range(0,(vlan["vlans"]| length)) %}
             <tr>
                 <td>{{ loop.index }}</td>
-                <td>{{ interfaces["interfaces"][i]["if_index"] }}</td>
-                <td>{{ interfaces["interfaces"][i]["if_description"] }}</td>
-                <td>{{ interfaces["interfaces"][i]["if_physical_add"] }}</td>
-                <td>{{ interfaces["interfaces"][i]["if_status"] }}</td>
+                <td>{{ vlan["vlans"][i]["vlan_id"] }}</td>
+                <td>{{ vlan["vlans"][i]["vlan_description"] }}</td>
+                <td>{{ vlan["vlans"][i]["vlan_ports"] | join(', ', attribute=1) }}</td>
             </tr>
                 {% endfor %}
         </tbody>

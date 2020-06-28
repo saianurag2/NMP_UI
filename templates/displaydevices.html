@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
-
+{% block head %}
+<meta http-equiv="refresh" content="120;">
+{% endblock %}
 {% block title %}
 View Devices
 {% endblock %}
@@ -31,7 +33,7 @@ View Devices
                 ip=device.get('ip'))}}" role="button">View Interfaces</a>
             </td>
             <td>
-                <a class="btn btn-primary" href="{{url_for('fetch_interface',building =device.get('building'),
+                <a class="btn btn-primary" href="{{url_for('fetch_vlan',building =device.get('building'),
                 ip=device.get('ip'))}}" role="button">View VLANs</a>
             </td>
             {% else %}
