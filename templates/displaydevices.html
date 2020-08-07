@@ -27,7 +27,7 @@ View Devices
             <td>{{device.get("ip")}}</td>
             <td>{{device.get("description")}}</td>
             {% if device.get("is_alive") %}
-            <td>Alive</td>
+            <td>Online</td>
             <td>
                 <a class="btn btn-primary" href="{{url_for('fetch_interface',building =device.get('building'),
                 ip=device.get('ip'))}}" role="button">View Interfaces</a>
@@ -37,7 +37,7 @@ View Devices
                 ip=device.get('ip'))}}" role="button">View VLANs</a>
             </td>
             {% else %}
-            <td>Dead</td>
+            <td>Offline</td>
             <td></td>
             <td></td>
             {% endif %}

@@ -7,6 +7,7 @@ from flask import render_template, redirect, url_for, session
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+import logging
 
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -33,8 +34,8 @@ def index():
                 obj = json.loads(response.text)
                 for bldg in obj:
                     bldgs.append(bldg["building"])
-        except Exception:
-            print(response.text)
+        except requests.exceptions.HTTPError:
+            logging.error(response.status_code, response.reason)
         finally:
             return render_template("index.html", buildings=bldgs)
     else:
@@ -113,13 +114,15 @@ def index_view():
     if not building == "":
         fetch_query.update({"building": building})
     response = requests.get(BASE_URL, params=fetch_query, headers=headers)
+    obj = {}
     if response.status_code == requests.codes.ok:
         print("Index View Request : Success")
+        obj = json.loads(response.text)
     else:
         print("Index View Request: Fail")
-        response.raise_for_status()
+        logging.error(response.status_code, response.reason)
         return redirect(url_for("index"))
-    obj = json.loads(response.text)
+
     print(f"view {obj}")
     return render_template('displaydevices.html', devices=obj)
 
@@ -150,12 +153,14 @@ def display_devices():
     if len(ip) > 0:
         fetch_query.update({"ip": ip})
     response = requests.get(BASE_URL, params=fetch_query, headers=headers)
+    obj = {}
     if response.status_code == requests.codes.ok:
         print("View Request : Success")
+        obj = json.loads(response.text)
     else:
         print("View Request: Fail")
-        response.raise_for_status()
-    obj = json.loads(response.text)
+        logging.error(response.status_code, response.reason)
+
     return render_template('displaydevices.html', devices=obj)
 
 
@@ -177,7 +182,7 @@ def create_device():
         print("Add Request : Success")
     else:
         print("Add Request: Fail")
-        response.raise_for_status()
+        logging.error(response.status_code, response.reason)
     print(device_obj)
     print(f"Add device {response.text}")
     return redirect(url_for('index_view', building=bldg))
@@ -221,7 +226,7 @@ def process_update():
         print("Update Request : Success")
     else:
         print("Update Request: Fail")
-        response.raise_for_status()
+        logging.error(response.status_code, response.reason)
     print(f"Up device {response.text}")
     return redirect(url_for("index"))
 
@@ -241,7 +246,7 @@ def delete_devices():
                 return redirect(url_for("index"))
             else:
                 print("Delete Request: Fail")
-                response.raise_for_status()
+                logging.error(response.status_code, response.reason)
             print(f"Delete device {response.text}")
         return render_template('deletedevices.html')
     else:
@@ -261,12 +266,13 @@ def fetch_interface():
     if len(ip) > 0:
         fetch_query.update({"ip": ip})
     response = requests.get(INTERFACE_URL, params=fetch_query, headers=headers)
+    obj = {}
     if response.status_code == requests.codes.ok:
         print("Interface View Request : Success")
+        obj = json.loads(response.text)
     else:
         print("Interface View Request: Fail")
-        # response.raise_for_status()
-    obj = json.loads(response.text)
+        logging.error(response.status_code, response.reason)
     return render_template('interface_view.html', device=fetch_query, interfaces=obj)
 
 
@@ -283,11 +289,11 @@ def fetch_vlan():
     if len(ip) > 0:
         fetch_query.update({"ip": ip})
     response = requests.get(VLAN_URL, params=fetch_query, headers=headers)
+    obj = {}
     if response.status_code == requests.codes.ok:
         print("VLAN View Request : Success")
+        obj = json.loads(response.text)
     else:
         print("VLAN View Request: Fail")
-        # response.raise_for_status()
-    obj = json.loads(response.text)
+        logging.error(response.status_code, response.reason)
     return render_template('vlan_view.html', device=fetch_query, vlan=obj)
-
