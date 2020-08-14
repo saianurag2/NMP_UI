@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout_unauth.html" %}
 {% block title %}
 User Login
 {% endblock %}
@@ -10,7 +10,7 @@ User Login
         <input type="password" placeholder="Password" name="password" required value="{{
         request.form.password }}">
         <input class="btn btn-primary" type="submit" value="Login">
-        <a class="btn btn-primary" href="{{url_for('signup')}}" role="button">New User</a>
+        <a class="btn btn-primary" href="{{url_for('auth.signup')}}" role="button">New User</a>
       </form>
       {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}

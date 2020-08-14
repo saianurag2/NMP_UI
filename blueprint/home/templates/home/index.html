@@ -12,7 +12,7 @@ Home
             <th scope="row">{{loop.index}}</th>
             <th scope="row">{{bldg}}</th>
             <td>
-                <a class="btn btn-primary" href="{{url_for('index_view',building=bldg)}}" role="button">View Devices</a>
+                <a class="btn btn-primary" href="{{url_for('device.index_view',building=bldg)}}" role="button">View Devices</a>
             </td>
         </tr>
         {% endfor %}

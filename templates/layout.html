@@ -1,45 +1,45 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <style>
-          html {
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            html {
                   min-height: 100%;
-                }
-          body {
+                 }
+            body {
                   background-image: url("/static/bgimage.png");
                   background-size: cover;
                   background-repeat:  no-repeat;
                   background-color: #93c572;
                   min-height: 100%;
-                }
-      </style>
-      <link rel="stylesheet" href="/static/menubar.css">
-      <title>NMP</title>
-      {% block head %}{% endblock %}
-  </head>
+                 }
+        </style>
+        <link rel="stylesheet" href="/static/menubar.css">
+        <title>NMP</title>
+        {% block head %}{% endblock %}
+    </head>
     <body>
 <!--            <div class = "row">-->
-            <img src="/static/iiit-logo-bar.jpg" style="width:100%" title="Logo">
-            <div class="topnav">
-                <a href="{{url_for('view_devices')}}">View Device</a>
-                <a href="{{url_for('add_devices')}}">Add Device</a>
-                <a href="{{url_for('update_devices')}}">Update Device</a>
-                <a href="{{url_for('delete_devices')}}">Delete Device</a>
-                {% if session['username'] %}
-                <a href="{{url_for('logout')}}">Logout</a>
-                {% endif %}
-            </div>
+        <img src="/static/iiit-logo-bar.jpg" style="width:100%" title="Logo">
+        <div class="topnav">
+            <a href="{{url_for('device.view_devices')}}">View Device</a>
+            <a href="{{url_for('device.add_devices')}}">Add Device</a>
+            <a href="{{url_for('device.update_devices')}}">Update Device</a>
+            <a href="{{url_for('device.delete_devices')}}">Delete Device</a>
+            {% if session['username'] %}
+            <a href="{{url_for('auth.logout')}}">Logout</a>
+            {% endif %}
+        </div>
 <!--            </div>-->
         <div class="container">
             <div class = "row">
-                <a href = "{{ url_for('index') }}">
+                <a href = "{{ url_for('home.index') }}">
                     <img src="/static/home_icon.svg" alt="" width="32" height="32" title="Home">
                 </a>
                 <h2> Central Network Management Portal IIITDMJ</h2>
