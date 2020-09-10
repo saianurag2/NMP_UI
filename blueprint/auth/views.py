@@ -1,8 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, session
-# from sqlalchemy.orm import scoped_session, sessionmaker
 from hashlib import sha256
-from models import db, User
-
+from app.extensions import db
+from app.models import User
 
 auth = Blueprint('auth', __name__,
                  template_folder='templates')

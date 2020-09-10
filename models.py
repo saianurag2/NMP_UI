@@ -1,6 +1,4 @@
-# from flask_sqlalchemy import SQLAlchemy
-from . import db
-# db = SQLAlchemy()
+from app.extensions import db
 
 
 class User(db.Model):

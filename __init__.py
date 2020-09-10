@@ -1,18 +1,13 @@
 from flask import Flask
-from flask_session import Session
-from flask_sqlalchemy import SQLAlchemy
-from blueprint.home.views import home
-from blueprint.auth.views import auth
-from blueprint.device.views import device
-
-# Globally accessible libraries
-db = SQLAlchemy()
-sess = Session()
+from app.extensions import db, sess
+from app.blueprint.home.views import home
+from app.blueprint.auth.views import auth
+from app.blueprint.device.views import device
 
 
 def create_app():
     """Construct the core application."""
-    app = Flask(__name__, instance_relative_config=False)
+    app = Flask(__name__)  # , instance_relative_config=False
     app.config.from_object('config.Config')
     # to tie database with app
     db.init_app(app)
