@@ -3,12 +3,12 @@ from app.extensions import db, sess
 from app.blueprint.home.views import home
 from app.blueprint.auth.views import auth
 from app.blueprint.device.views import device
-
+from app.blueprint.home.chartIndex import visual
 
 def create_app():
     """Construct the core application."""
     app = Flask(__name__)  # , instance_relative_config=False
-    app.config.from_object('config.Config')
+    app.config.from_object('config.DevConfig')
     # to tie database with app
     db.init_app(app)
     # Session(app)
@@ -19,6 +19,7 @@ def create_app():
         app.register_blueprint(home)
         app.register_blueprint(auth)
         app.register_blueprint(device)
+        app.register_blueprint(visual)
         return app
 
 

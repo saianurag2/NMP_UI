@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block head %}
+<script src="{{ url_for('static', filename='sbcstatic.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<!--<script src= https://www.chartjs.org/samples/latest/utils.js></script>-->
+<style>
+
+	#chartslot  {
+  		background-color: white;
+	}
+</style>
+{% endblock %}
+{% block title %}
+Overview
+{% endblock %}
+
+{% block body %}
+	<div id="chartslot" >
+		<canvas id="canvas"></canvas>
+	</div>
+	<script>
+		bldg = JSON.parse({{ buildings | tojson }});
+		on = JSON.parse({{ online | tojson }});
+		off = JSON.parse({{ offline | tojson }});
+		renderChart(bldg, on ,off);
+	</script>
+{% endblock %}

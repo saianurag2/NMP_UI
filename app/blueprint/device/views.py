@@ -93,7 +93,7 @@ def create_device():
         logging.error(response.status_code, response.reason)
     print(device_obj)
     print(f"Add device {response.text}")
-    return redirect(url_for('index_view', building=bldg))
+    return redirect(url_for('device.index_view', building=bldg))
 
 
 @device.route('/add', methods=['GET'])

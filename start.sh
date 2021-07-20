@@ -1,3 +1,3 @@
-# !/bin/bash
-export FLASK_APP=wsgi.py
-flask run
+#!/bin/bash
+source venv/bin/activate
+python3 wsgi.py
