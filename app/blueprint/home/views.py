@@ -12,7 +12,7 @@ headers = {'content-type': 'application/json'}
 @home.route('/')
 def index():
     """
-    List of Buildings
+    List of Schools
     """
     if session.get("username"):
         bldgs = list()
